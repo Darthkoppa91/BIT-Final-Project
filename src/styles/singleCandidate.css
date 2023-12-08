@@ -1,0 +1,65 @@
+.single-candidate-card {
+  margin: 1rem;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border: 1px solid none;
+  /* border-radius: 30px 40px 0 15px; */
+  color: rgb(22, 16, 124);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  text-align: start;
+}
+button {
+  border: 2px solid none;
+  border-radius: 15px;
+  cursor: pointer;
+  padding: 1rem;
+  background-color: salmon;
+  font-weight: 500;
+  font-size: medium;
+  color: white;
+  width: fit-content;
+}
+
+.single-candidate-card > div > img {
+  border-radius: 15% 15% 15% 15%;
+  width: 75%;
+}
+
+.reports {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+}
+
+span {
+  color: salmon;
+}
+
+.single-candidate-card div:first-of-type {
+  align-self: start;
+  width: 70%;
+}
+
+h2 {
+  text-transform: uppercase;
+}
+
+.reports-div {
+  border: 1px solid none;
+  border-radius: 5% 5% 5% 5%;
+  padding: 1.5rem;
+  margin: 1.5rem;
+  font-size: 19px;
+  background-color: whitesmoke;
+}
+
+.li-item {
+  border-bottom: 3px solid rgb(22, 16, 124);
+  padding-bottom: 1.5rem;
+}
