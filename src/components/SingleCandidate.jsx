@@ -1,11 +1,19 @@
 import React, { useContext, useEffect } from "react";
 import { appContext } from "../context";
 import { slike } from "../slike";
+import { Navigate, useNavigate } from "react-router-dom";
 import "../styles/singleCandidate.css";
 
 function SingleCandidate() {
-  const { selectedCandidate, setSelectedCandidate, setReport, report } =
-    useContext(appContext);
+  const navigate = useNavigate();
+  const {
+    selectedCandidate,
+    setSelectedCandidate,
+    setReport,
+    report,
+    accessToken,
+    setCandidates,
+  } = useContext(appContext);
   const getReport = async function (id) {
     const res = await fetch(
       `http://localhost:3333/api/reports?candidateId=${id}`
@@ -19,6 +27,20 @@ function SingleCandidate() {
     getReport(selectedCandidate.id);
   }, []);
 
+  const deleteCandidate = async function (id, candidate) {
+    const res = await fetch(`http://localhost:3333/api/candidates/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    const deletedCandidate = await res.json();
+    setCandidates((prev) => prev.filter((candidate) => candidate.id !== id));
+    setSelectedCandidate(null);
+    navigate("/candidates");
+  };
+
   const imgTag = slike[Math.floor(Math.random() * 9)];
   return (
     <div className="single-candidate-card">
@@ -29,12 +51,21 @@ function SingleCandidate() {
         <p>Contact:{selectedCandidate?.email}</p>
         <p>Birthday:{selectedCandidate?.birthday}</p>
         <p>Education:{selectedCandidate?.education}</p>
-        <button onClick={() => setSelectedCandidate(null)}>
-          Back to all candidates
-        </button>
+        <div className="button-container">
+          <button onClick={() => setSelectedCandidate(null)}>
+            Back to all candidates
+          </button>
+          <button onClick={() => deleteCandidate(selectedCandidate?.id)}>
+            Delete Candidate
+          </button>
+        </div>
       </div>
       <div className="reports-div">
-        <h2>Reports</h2>
+        {report.length > 0 ? (
+          <h2>Reports</h2>
+        ) : (
+          <h2>No reports were found for this candidate!</h2>
+        )}
         <List />
       </div>
     </div>

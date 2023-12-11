@@ -1,14 +1,17 @@
-import { Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Companies from "./components/Companies";
 import Candidates from "./components/Candidates";
 import Footer from "./components/Footer";
 import "./styles/app.css";
-import { Redirect, Switch } from "react-router-dom/cjs/react-router-dom.min";
+
 import { ApplicationProvider } from "./context";
 import { useState, useEffect } from "react";
 import SingleCandidate from "./components/SingleCandidate";
+import Modal from "./components/Modal";
+import AdminPage from "./components/AdminPage";
+import { PrivateRoutes } from "./ProtectedRoutes";
 
 function App() {
   const [companies, setCompanies] = useState([]);
@@ -16,6 +19,11 @@ function App() {
   const [previewCandidate, setPreviewCandidate] = useState(null);
   const [selectedCandidate, setSelectedCandidate] = useState(null);
   const [report, setReport] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [accessToken, setAccessToken] = useState(
+    JSON.parse(localStorage.getItem("accessToken"))
+  );
   const getCandidates = async function () {
     const res = await fetch("http://localhost:3333/api/candidates");
     const data = await res.json();
@@ -24,6 +32,7 @@ function App() {
   console.log(candidates);
   useEffect(() => {
     getCandidates();
+    accessToken ? setIsLoggedIn(true) : setIsLoggedIn(false);
   }, []);
 
   return (
@@ -39,22 +48,29 @@ function App() {
         selectedCandidate,
         report,
         setReport,
+        accessToken,
+        setAccessToken,
+        setOpenModal,
+        setIsLoggedIn,
+        isLoggedIn,
       }}
     >
       <div className="app">
         <Header />
-        <Switch>
-          <Route path="/" exact>
-            <Main />
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route
+            path="/candidates"
+            element={selectedCandidate ? <SingleCandidate /> : <Candidates />}
+          />
+          <Route path="/companies" element={<Companies />} />
+
+          {/* <Redirect to="/" /> */}
+          <Route element={<PrivateRoutes />}>
+            <Route path="/admin" element={<AdminPage />} />
           </Route>
-          <Route path="/candidates" exact>
-            {selectedCandidate ? <SingleCandidate /> : <Candidates />}
-          </Route>
-          <Route path="/companies" exact>
-            <Companies />
-          </Route>
-          <Redirect to="/" />
-        </Switch>
+        </Routes>
+        {openModal ? <Modal /> : null}
         <Footer />
       </div>
     </ApplicationProvider>

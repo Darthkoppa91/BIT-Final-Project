@@ -27,11 +27,13 @@ function Card({ name, email, candidate }) {
 
   const imgTag = slike[Math.floor(Math.random() * 9)];
   return (
-    <div className="card" onClick={() => setSelectedCandidate(candidate)}>
-      <img src={imgTag} alt="" />
-      <p>{name}</p>
-      <p>{email}</p>
-    </div>
+    <>
+      <div className="card" onClick={() => setSelectedCandidate(candidate)}>
+        <img src={imgTag} alt="" />
+        <p>{name}</p>
+        <p>{email}</p>
+      </div>
+    </>
   );
 }
 

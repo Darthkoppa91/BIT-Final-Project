@@ -1,7 +1,7 @@
 .single-candidate-card {
-  margin: 1rem;
+  /* margin: 1rem; */
   width: 100%;
-  padding: 1rem;
+  padding: 3rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -13,6 +13,10 @@
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
   text-align: start;
+  margin-top: 1rem;
+}
+.single-candidate-card div:nth-child(1) {
+  margin-top: 2.3rem;
 }
 button {
   border: 2px solid none;
@@ -28,6 +32,7 @@ button {
 
 .single-candidate-card > div > img {
   border-radius: 15% 15% 15% 15%;
+  margin-bottom: 1rem;
   width: 75%;
 }
 
@@ -62,4 +67,10 @@ h2 {
 .li-item {
   border-bottom: 3px solid rgb(22, 16, 124);
   padding-bottom: 1.5rem;
+}
+
+.button-container {
+  display: flex;
+  gap: 2rem;
+  margin-top: 5%;
 }

@@ -1,0 +1,39 @@
+.login-input {
+  position: absolute;
+  top: 25%;
+  left: 35%;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 41, 121, 1) 33%,
+    rgba(7, 51, 150, 1) 45%
+  );
+  width: 400px;
+  height: 400px;
+  padding: 1.5rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15%;
+}
+
+.MuiFormControl-root {
+  background-color: white;
+  width: 60%;
+}
+
+.close-modal {
+  position: absolute;
+  left: 85%;
+  top: 2%;
+  border: 0;
+  background-color: transparent;
+  color: salmon;
+  font-weight: 700;
+  font-size: 24px;
+}

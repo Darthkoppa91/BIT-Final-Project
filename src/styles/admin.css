@@ -1,0 +1,26 @@
+.post-candidate-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  width: 50%;
+  position: absolute;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 41, 121, 1) 33%,
+    rgba(7, 51, 150, 1) 45%
+  );
+  padding: 4.5rem 1rem 2.5rem 1rem;
+}
+
+.admin-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  padding: 1.5rem;
+  height: 86vh;
+}

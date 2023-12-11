@@ -2,8 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { appContext } from "../context";
+
 function Header() {
-  const { setSelectedCandidate } = useContext(appContext);
+  const {
+    setSelectedCandidate,
+    isLoggedIn,
+    setOpenModal,
+    setIsLoggedIn,
+    setAccessToken,
+  } = useContext(appContext);
   return (
     <div className="header">
       <h1>VAP</h1>
@@ -17,6 +24,26 @@ function Header() {
         <li>
           <Link to="/candidates">Candidates</Link>
         </li>
+        {isLoggedIn ? (
+          <li>
+            <Link to="/admin">Admin</Link>
+          </li>
+        ) : (
+          ""
+        )}
+        {isLoggedIn ? (
+          <li
+            onClick={() => {
+              setIsLoggedIn(false);
+              setAccessToken("");
+              localStorage.removeItem("accessToken");
+            }}
+          >
+            <Link to="/">Log Out</Link>
+          </li>
+        ) : (
+          <li onClick={() => setOpenModal((prev) => !prev)}>Log In</li>
+        )}
       </ul>
     </div>
   );

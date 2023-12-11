@@ -28,7 +28,7 @@ function InputPreview() {
   };
   return (
     <div className="input-div">
-      <h2>Sign in as Candidate</h2>
+      <h2>Candidate Preview</h2>
       <TextField
         error={error}
         className="textfield-outline"
