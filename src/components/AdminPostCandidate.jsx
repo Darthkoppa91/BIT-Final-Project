@@ -3,6 +3,7 @@ import { appContext } from "../context";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import "../styles/admin.css";
+import { getData } from "../helpers";
 
 function AdminPostCandidate({ setShowForm }) {
   const { setCandidates, accessToken } = useContext(appContext);
@@ -24,18 +25,14 @@ function AdminPostCandidate({ setShowForm }) {
       postCandidate.email === ""
     )
       return;
-    const res = await fetch("http://localhost:3333/api/candidates", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-      body: JSON.stringify(postCandidate),
-    });
-    const data = await res.json();
-    console.log(data);
-    setCandidates((prev) => [...prev, postCandidate]);
-    setShowForm(false);
+
+    getData(
+      accessToken,
+      postCandidate,
+      "candidates",
+      setShowForm,
+      setCandidates
+    );
   };
   return (
     <div className="post-candidate-div">

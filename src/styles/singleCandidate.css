@@ -9,21 +9,22 @@
   gap: 1rem;
   border: 1px solid none;
   /* border-radius: 30px 40px 0 15px; */
-  color: rgb(22, 16, 124);
+  /* color: rgb(22, 16, 124); */
+  color: #444444;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
   text-align: start;
   margin-top: 1rem;
+  flex: 1;
 }
-.single-candidate-card div:nth-child(1) {
-  margin-top: 2.3rem;
-}
+
 button {
   border: 2px solid none;
   border-radius: 15px;
   cursor: pointer;
   padding: 1rem;
-  background-color: salmon;
+  background-color: rgb(22, 16, 124);
+  border: 0;
   font-weight: 500;
   font-size: medium;
   color: white;
@@ -43,7 +44,8 @@ button {
 }
 
 span {
-  color: salmon;
+  color: rgb(22, 16, 124);
+  /* color: white; */
 }
 
 .single-candidate-card div:first-of-type {
@@ -53,6 +55,8 @@ span {
 
 h2 {
   text-transform: uppercase;
+  padding-left: 20px;
+  color: rgb(22, 16, 124);
 }
 
 .reports-div {
@@ -61,7 +65,7 @@ h2 {
   padding: 1.5rem;
   margin: 1.5rem;
   font-size: 19px;
-  background-color: whitesmoke;
+  background-color: #edeeee;
 }
 
 .li-item {
@@ -70,7 +74,13 @@ h2 {
 }
 
 .button-container {
-  display: flex;
+  /* display: flex; */
+
   gap: 2rem;
   margin-top: 5%;
+}
+
+.back {
+  position: relative;
+  transform: translateY(-90%);
 }

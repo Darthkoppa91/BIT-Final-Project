@@ -17,10 +17,17 @@
 
 .admin-container {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
   gap: 3rem;
   padding: 1.5rem;
-  height: 86vh;
+  flex: 1;
+  background: url("/public/images/bgworld.jpg");
+  background-size: cover;
 }
+
+/* 
+.admin-container div {
+  width: 30%;
+} */

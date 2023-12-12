@@ -4,8 +4,9 @@ import "../styles/login.css";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { appContext } from "../context";
+import Modal from "@mui/material/Modal";
 
-function Modal() {
+function Login() {
   const { setAccessToken, setOpenModal, setIsLoggedIn } =
     useContext(appContext);
   const [body, setBody] = useState({
@@ -70,11 +71,11 @@ function Modal() {
           onChange={(e) => setBody({ ...body, password: e.target.value })}
         /> */}
         <Button variant="contained" onClick={handleClick}>
-          Post
+          Log in
         </Button>
       </div>
     </div>
   );
 }
 
-export default Modal;
+export default Login;

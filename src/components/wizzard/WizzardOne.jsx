@@ -4,10 +4,10 @@ import Button from "@mui/material/Button";
 
 function WizzardOne({ setStep, setCreateReport, createReport }) {
   return (
-    <div>
+    <div className="wizzard">
       <TextField
         className="textfield-outline"
-        id="outlined-14"
+        id="outlined-233"
         autoComplete="current-username"
         variant="outlined"
         value={createReport.candidateId}
@@ -21,7 +21,7 @@ function WizzardOne({ setStep, setCreateReport, createReport }) {
       />
       <TextField
         className="textfield-outline"
-        id="outlined-14"
+        id="outlined-1134"
         autoComplete="current-username"
         variant="outlined"
         value={createReport.companyId}
@@ -35,7 +35,7 @@ function WizzardOne({ setStep, setCreateReport, createReport }) {
       />
       <TextField
         className="textfield-outline"
-        id="outlined-14"
+        id="outlined-12234"
         autoComplete="current-username"
         variant="outlined"
         value={createReport.id}
@@ -44,9 +44,7 @@ function WizzardOne({ setStep, setCreateReport, createReport }) {
         }
         placeholder="Report ID"
       />
-      <Button variant="contained" onClick={() => setStep(1)}>
-        Back
-      </Button>
+
       <Button variant="contained" onClick={() => setStep(2)}>
         Next
       </Button>

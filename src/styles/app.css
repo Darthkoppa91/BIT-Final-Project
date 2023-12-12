@@ -114,7 +114,7 @@ button,
   gap: 0.5rem;
   padding: 1rem;
   font-weight: 700;
-  background-color: rgb(186, 174, 174);
+  background-color: #073396;
   border: 3px solid none;
   box-shadow: 13px -1px 22px -8px rgba(23, 16, 189, 0.75);
   -webkit-box-shadow: 13px -1px 22px -8px rgba(23, 16, 189, 0.75);
@@ -131,7 +131,7 @@ button,
   gap: 3rem;
   justify-content: center;
   padding: 2.5rem;
-  color: var(--primary-blue);
+  color: var(--white);
 }
 .companies {
   display: flex;
@@ -145,6 +145,7 @@ button,
 
 .company {
   width: 25%;
+  min-height: 200px;
 }
 
 .aboutus-text {
@@ -176,4 +177,16 @@ h3 {
 
 .about-us p {
   padding-right: 15%;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  transition: all 0.5s;
 }

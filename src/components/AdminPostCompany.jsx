@@ -3,6 +3,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { appContext } from "../context";
 import "../styles/admin.css";
+import { getData } from "../helpers";
 function AdminPostCompany({ setShowCompany }) {
   const { accessToken, setCompanies } = useContext(appContext);
   const [postCompany, setPostCompany] = useState({
@@ -19,18 +20,14 @@ function AdminPostCompany({ setShowCompany }) {
       postCompany.email === ""
     )
       return;
-    const res = await fetch("http://localhost:3333/api/companies", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-      body: JSON.stringify(postCompany),
-    });
-    const data = await res.json();
-    setShowCompany(false);
-    setCompanies((prev) => [...prev, postCompany]);
-    console.log(data);
+
+    getData(
+      accessToken,
+      postCompany,
+      "companies",
+      setShowCompany,
+      setCompanies
+    );
   };
   return (
     <div className="post-candidate-div">

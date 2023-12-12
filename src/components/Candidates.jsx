@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { appContext } from "../context";
 import { slike } from "../slike";
+import { useNavigate } from "react-router-dom";
 
 function Candidates() {
   const { candidates } = useContext(appContext);
@@ -23,12 +24,19 @@ function Candidates() {
 }
 
 function Card({ name, email, candidate }) {
+  const imgTag = slike[Math.floor(Math.random() * 9)];
+  const navigate = useNavigate();
   const { setSelectedCandidate } = useContext(appContext);
 
-  const imgTag = slike[Math.floor(Math.random() * 9)];
   return (
     <>
-      <div className="card" onClick={() => setSelectedCandidate(candidate)}>
+      <div
+        className="card"
+        onClick={() => {
+          setSelectedCandidate(candidate);
+          navigate("/selectedCandidate");
+        }}
+      >
         <img src={imgTag} alt="" />
         <p>{name}</p>
         <p>{email}</p>

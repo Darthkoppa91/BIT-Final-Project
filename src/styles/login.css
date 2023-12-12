@@ -2,15 +2,21 @@
   position: absolute;
   top: 25%;
   left: 35%;
-  background: linear-gradient(
+  /* background: linear-gradient(
     90deg,
     rgba(2, 0, 36, 1) 0%,
     rgba(9, 41, 121, 1) 33%,
     rgba(7, 51, 150, 1) 45%
-  );
-  width: 400px;
-  height: 400px;
+  ); */
+  background-color: white;
+  width: 500px;
+  height: 500px;
   padding: 1.5rem;
+  z-index: 999;
+  box-shadow: 13px -1px 22px -8px rgba(23, 16, 189, 0.75);
+  -webkit-box-shadow: 13px -1px 22px -8px rgba(23, 16, 189, 0.75);
+  -moz-box-shadow: 13px -1px 22px -8px rgba(23, 16, 189, 0.75);
+  border-radius: 15px;
 }
 
 .form {
@@ -33,7 +39,7 @@
   top: 2%;
   border: 0;
   background-color: transparent;
-  color: salmon;
+  color: rgb(22, 16, 124);
   font-weight: 700;
   font-size: 24px;
 }

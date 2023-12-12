@@ -5,13 +5,14 @@ import Companies from "./components/Companies";
 import Candidates from "./components/Candidates";
 import Footer from "./components/Footer";
 import "./styles/app.css";
-
+import { fetchData } from "./helpers";
 import { ApplicationProvider } from "./context";
 import { useState, useEffect } from "react";
 import SingleCandidate from "./components/SingleCandidate";
-import Modal from "./components/Modal";
+import Login from "./components/Modal";
 import AdminPage from "./components/AdminPage";
 import { PrivateRoutes } from "./ProtectedRoutes";
+import Overlay from "./components/wizzard/Overlay";
 
 function App() {
   const [companies, setCompanies] = useState([]);
@@ -24,14 +25,11 @@ function App() {
   const [accessToken, setAccessToken] = useState(
     JSON.parse(localStorage.getItem("accessToken"))
   );
-  const getCandidates = async function () {
-    const res = await fetch("http://localhost:3333/api/candidates");
-    const data = await res.json();
-    setCandidates(data);
-  };
-  console.log(candidates);
+
+  // console.log(candidates);
+
   useEffect(() => {
-    getCandidates();
+    fetchData(setCandidates, "candidates");
     accessToken ? setIsLoggedIn(true) : setIsLoggedIn(false);
   }, []);
 
@@ -59,10 +57,8 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route
-            path="/candidates"
-            element={selectedCandidate ? <SingleCandidate /> : <Candidates />}
-          />
+          <Route path="/candidates" element={<Candidates />} />
+          <Route path="/selectedCandidate" element={<SingleCandidate />} />
           <Route path="/companies" element={<Companies />} />
 
           {/* <Redirect to="/" /> */}
@@ -70,8 +66,9 @@ function App() {
             <Route path="/admin" element={<AdminPage />} />
           </Route>
         </Routes>
-        {openModal ? <Modal /> : null}
+        {openModal ? <Login /> : null}
         <Footer />
+        {openModal ? <Overlay /> : null}
       </div>
     </ApplicationProvider>
   );

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { appContext } from "../context";
 import { slike } from "../slike";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../styles/singleCandidate.css";
 
 function SingleCandidate() {
@@ -13,6 +13,7 @@ function SingleCandidate() {
     report,
     accessToken,
     setCandidates,
+    isLoggedIn,
   } = useContext(appContext);
   const getReport = async function (id) {
     const res = await fetch(
@@ -24,10 +25,10 @@ function SingleCandidate() {
   };
 
   useEffect(() => {
-    getReport(selectedCandidate.id);
+    getReport(selectedCandidate?.id);
   }, []);
 
-  const deleteCandidate = async function (id, candidate) {
+  const deleteCandidate = async function (id) {
     const res = await fetch(`http://localhost:3333/api/candidates/${id}`, {
       method: "DELETE",
       headers: {
@@ -35,7 +36,7 @@ function SingleCandidate() {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-    const deletedCandidate = await res.json();
+    // const deletedCandidate = await res.json();
     setCandidates((prev) => prev.filter((candidate) => candidate.id !== id));
     setSelectedCandidate(null);
     navigate("/candidates");
@@ -45,19 +46,43 @@ function SingleCandidate() {
   return (
     <div className="single-candidate-card">
       <div>
+        <button
+          className="back"
+          onClick={() => {
+            navigate("/candidates");
+          }}
+        >
+          BACK
+        </button>
         <img src={imgTag} alt="BITOVAC" />
-        <p>Name:{selectedCandidate?.name}</p>
-        <p>ID:{selectedCandidate?.id}</p>
-        <p>Contact:{selectedCandidate?.email}</p>
-        <p>Birthday:{selectedCandidate?.birthday}</p>
-        <p>Education:{selectedCandidate?.education}</p>
+        <p>
+          <span>Name:</span>
+          {selectedCandidate?.name}
+        </p>
+        <p>
+          <span>ID:</span>
+          {selectedCandidate?.id}
+        </p>
+        <p>
+          <span>Contact:</span>
+          {selectedCandidate?.email}
+        </p>
+        <p>
+          <span>Birthday:</span>
+          {selectedCandidate?.birthday}
+        </p>
+        <p>
+          <span>Education:</span>
+          {selectedCandidate?.education}
+        </p>
         <div className="button-container">
-          <button onClick={() => setSelectedCandidate(null)}>
-            Back to all candidates
-          </button>
-          <button onClick={() => deleteCandidate(selectedCandidate?.id)}>
-            Delete Candidate
-          </button>
+          {isLoggedIn ? (
+            <button onClick={() => deleteCandidate(selectedCandidate?.id)}>
+              Delete Candidate
+            </button>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <div className="reports-div">
