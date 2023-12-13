@@ -5,21 +5,16 @@ import { appContext } from "../context";
 import "../styles/admin.css";
 import { getData } from "../helpers";
 function AdminPostCompany({ setShowCompany }) {
-  const { accessToken, setCompanies } = useContext(appContext);
+  const { accessToken, setCompanies, setShowOverlay } = useContext(appContext);
   const [postCompany, setPostCompany] = useState({
     url: "",
-    id: "",
+
     name: "",
     email: "",
     about: "",
   });
   const handleClick = async function () {
-    if (
-      postCompany.id === "" ||
-      postCompany.name === "" ||
-      postCompany.email === ""
-    )
-      return;
+    if (postCompany.name === "" || postCompany.email === "") return;
 
     getData(
       accessToken,
@@ -28,11 +23,16 @@ function AdminPostCompany({ setShowCompany }) {
       setShowCompany,
       setCompanies
     );
+    setShowOverlay(false);
   };
   return (
     <div className="post-candidate-div">
+      <h2 className="submit-headings">Submit New Company</h2>
       <button
-        onClick={() => setShowCompany((prev) => !prev)}
+        onClick={() => {
+          setShowCompany((prev) => !prev);
+          setShowOverlay(false);
+        }}
         className="close-modal"
       >
         X
@@ -48,17 +48,7 @@ function AdminPostCompany({ setShowCompany }) {
         }
         placeholder="url"
       />
-      <TextField
-        className="textfield-outline"
-        id="outlined-11"
-        autoComplete="current-username"
-        variant="outlined"
-        value={postCompany.id}
-        onChange={(e) =>
-          setPostCompany({ ...postCompany, id: Number(e.target.value) })
-        }
-        placeholder="id"
-      />
+
       <TextField
         className="textfield-outline"
         id="outlined-12"

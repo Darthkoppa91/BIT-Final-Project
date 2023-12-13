@@ -25,11 +25,23 @@ function App() {
   const [accessToken, setAccessToken] = useState(
     JSON.parse(localStorage.getItem("accessToken"))
   );
+  const [showOverlay, setShowOverlay] = useState(false);
+  const [createReport, setCreateReport] = useState({
+    candidateId: "",
+    candidateName: "",
+    companyId: "",
+
+    interviewDate: "",
+    note: "",
+    phase: "",
+    status: "",
+  });
 
   // console.log(candidates);
 
   useEffect(() => {
     fetchData(setCandidates, "candidates");
+    fetchData(setCompanies, "companies");
     accessToken ? setIsLoggedIn(true) : setIsLoggedIn(false);
   }, []);
 
@@ -51,6 +63,9 @@ function App() {
         setOpenModal,
         setIsLoggedIn,
         isLoggedIn,
+        setShowOverlay,
+        createReport,
+        setCreateReport,
       }}
     >
       <div className="app">
@@ -68,7 +83,7 @@ function App() {
         </Routes>
         {openModal ? <Login /> : null}
         <Footer />
-        {openModal ? <Overlay /> : null}
+        {showOverlay ? <Overlay /> : null}
       </div>
     </ApplicationProvider>
   );

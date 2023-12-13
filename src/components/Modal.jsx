@@ -4,10 +4,9 @@ import "../styles/login.css";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { appContext } from "../context";
-import Modal from "@mui/material/Modal";
 
 function Login() {
-  const { setAccessToken, setOpenModal, setIsLoggedIn } =
+  const { setAccessToken, setOpenModal, setIsLoggedIn, setShowOverlay } =
     useContext(appContext);
   const [body, setBody] = useState({
     email: "",
@@ -31,6 +30,7 @@ function Login() {
       setIsLoggedIn(true);
       setOpenModal(false);
       navigate("/admin");
+      setShowOverlay(false);
     }
   };
   return (
@@ -42,7 +42,10 @@ function Login() {
           onChange={(e) => setBody({ ...body, email: e.target.value })}
         /> */}
         <button
-          onClick={() => setOpenModal((prev) => !prev)}
+          onClick={() => {
+            setOpenModal((prev) => !prev);
+            setShowOverlay(false);
+          }}
           className="close-modal"
         >
           X

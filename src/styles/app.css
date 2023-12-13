@@ -15,12 +15,27 @@ body {
   padding: 0;
   box-sizing: border-box;
   word-wrap: break-word;
+  line-height: 1.5;
 }
 img {
   max-width: 100%;
   display: block;
 }
 
+.main-heading {
+  color: #092979;
+  padding: 0.3rem 1rem;
+  font-size: 42px;
+  background: white;
+  border-radius: 15px;
+  font-style: italic;
+}
+.main-span {
+  background: #092979;
+  border-radius: 10px;
+  color: white;
+  padding: 0 1rem 0 0;
+}
 .app {
   min-height: 100vh;
   width: 100%;
@@ -37,12 +52,7 @@ img {
 }
 
 .header {
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 41, 121, 1) 33%,
-    rgba(7, 51, 150, 1) 45%
-  );
+  background: linear-gradient(90deg, #020024 0%, #092979 33%, #073396 45%);
   -webkit-box-shadow: 0px 6px 12px -7px rgba(244, 243, 238, 1);
   -moz-box-shadow: 0px 6px 12px -7px rgba(244, 243, 238, 1);
   box-shadow: 0px 6px 12px -7px rgba(244, 243, 238, 1);
@@ -104,6 +114,9 @@ button,
 }
 .main > div:nth-child(2) {
   width: 50%;
+}
+span {
+  cursor: pointer;
 }
 
 .card {

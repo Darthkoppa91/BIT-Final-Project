@@ -15,6 +15,12 @@ function SingleCandidate() {
     setCandidates,
     isLoggedIn,
   } = useContext(appContext);
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
   const getReport = async function (id) {
     const res = await fetch(
       `http://localhost:3333/api/reports?candidateId=${id}`
@@ -43,6 +49,7 @@ function SingleCandidate() {
   };
 
   const imgTag = slike[Math.floor(Math.random() * 9)];
+  const birthday = new Date(Date.parse(selectedCandidate?.birthday));
   return (
     <div className="single-candidate-card">
       <div>
@@ -59,17 +66,14 @@ function SingleCandidate() {
           <span>Name:</span>
           {selectedCandidate?.name}
         </p>
-        <p>
-          <span>ID:</span>
-          {selectedCandidate?.id}
-        </p>
+
         <p>
           <span>Contact:</span>
           {selectedCandidate?.email}
         </p>
         <p>
           <span>Birthday:</span>
-          {selectedCandidate?.birthday}
+          {birthday.toLocaleDateString("en-US", options)}
         </p>
         <p>
           <span>Education:</span>

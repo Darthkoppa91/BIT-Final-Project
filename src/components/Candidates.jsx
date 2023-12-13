@@ -23,7 +23,7 @@ function Candidates() {
   );
 }
 
-function Card({ name, email, candidate }) {
+export function Card({ name, email, candidate }) {
   const imgTag = slike[Math.floor(Math.random() * 9)];
   const navigate = useNavigate();
   const { setSelectedCandidate } = useContext(appContext);

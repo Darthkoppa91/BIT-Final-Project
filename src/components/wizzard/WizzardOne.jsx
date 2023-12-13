@@ -6,6 +6,9 @@ function WizzardOne({ setStep, setCreateReport, createReport }) {
   return (
     <div className="wizzard">
       <TextField
+        sx={{
+          fontWeight: 800,
+        }}
         className="textfield-outline"
         id="outlined-233"
         autoComplete="current-username"

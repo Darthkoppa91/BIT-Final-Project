@@ -9,7 +9,8 @@ function WizzardThree({
   setStep,
   setShowReport,
 }) {
-  const { accessToken } = useContext(appContext);
+  const { accessToken, setShowOverlay, report, setReport } =
+    useContext(appContext);
   const handleSubmit = async function () {
     const res = await fetch("http://localhost:3333/api/reports", {
       method: "POST",
@@ -19,8 +20,11 @@ function WizzardThree({
       },
       body: JSON.stringify(createReport),
     });
-    const report = await res.json();
+    const data = await res.json();
+
     setShowReport(false);
+    setShowOverlay(false);
+    setReport((prev) => [...prev, data]);
   };
   return (
     <div className="wizzard">
@@ -71,7 +75,13 @@ function WizzardThree({
         <Button variant="contained" onClick={() => setStep(2)}>
           Back
         </Button>
-        <Button variant="contained" onClick={handleSubmit}>
+        <Button
+          variant="contained"
+          onClick={handleSubmit}
+          disabled={
+            createReport.candidateId && createReport.companyId ? false : true
+          }
+        >
           Submit
         </Button>
       </div>

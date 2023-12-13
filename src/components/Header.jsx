@@ -12,11 +12,17 @@ function Header() {
     setOpenModal,
     setIsLoggedIn,
     setAccessToken,
+    setShowOverlay,
   } = useContext(appContext);
   return (
     <div className="header">
       <h1>
-        <Link to="/">VAP</Link>
+        <Link to="/">
+          {/* <img src="./images/Logo pick canva.png" alt="logo pic" /> */}
+          <h1 className="main-heading">
+            V<span className="main-span">AP</span>
+          </h1>
+        </Link>
       </h1>
       <ul>
         <li onClick={() => setSelectedCandidate(null)}>
@@ -48,7 +54,14 @@ function Header() {
             <Link to="/">Log Out</Link>
           </li>
         ) : (
-          <li onClick={() => setOpenModal((prev) => !prev)}>Log In</li>
+          <li
+            onClick={() => {
+              setOpenModal((prev) => !prev);
+              setShowOverlay(true);
+            }}
+          >
+            Log In
+          </li>
         )}
       </ul>
     </div>

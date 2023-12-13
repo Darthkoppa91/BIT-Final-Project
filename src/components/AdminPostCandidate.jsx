@@ -6,11 +6,11 @@ import "../styles/admin.css";
 import { getData } from "../helpers";
 
 function AdminPostCandidate({ setShowForm }) {
-  const { setCandidates, accessToken } = useContext(appContext);
+  const { setCandidates, accessToken, setShowOverlay } = useContext(appContext);
 
   const [postCandidate, setPostCandidate] = useState({
     name: "",
-    id: "",
+
     email: "",
     education: "",
     birthday: "",
@@ -19,12 +19,7 @@ function AdminPostCandidate({ setShowForm }) {
   });
 
   const handleClick = async function () {
-    if (
-      postCandidate.id === "" ||
-      postCandidate.name === "" ||
-      postCandidate.email === ""
-    )
-      return;
+    if (postCandidate.name === "" || postCandidate.email === "") return;
 
     getData(
       accessToken,
@@ -33,15 +28,21 @@ function AdminPostCandidate({ setShowForm }) {
       setShowForm,
       setCandidates
     );
+    setShowOverlay(false);
   };
   return (
     <div className="post-candidate-div">
       <button
-        onClick={() => setShowForm((prev) => !prev)}
+        onClick={() => {
+          setShowForm((prev) => !prev);
+
+          setShowOverlay(false);
+        }}
         className="close-modal"
       >
         X
       </button>
+      <h2>Enter Candidate Information</h2>
       <TextField
         className="textfield-outline"
         id="outlined-5"
@@ -53,17 +54,7 @@ function AdminPostCandidate({ setShowForm }) {
         }
         placeholder="name"
       />
-      <TextField
-        className="textfield-outline"
-        id="outlined-6"
-        autoComplete="current-username"
-        variant="outlined"
-        value={postCandidate.id}
-        onChange={(e) =>
-          setPostCandidate({ ...postCandidate, id: Number(e.target.value) })
-        }
-        placeholder="id"
-      />
+
       <TextField
         className="textfield-outline"
         id="outlined-7"

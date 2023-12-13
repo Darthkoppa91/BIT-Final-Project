@@ -4,7 +4,7 @@ import { appContext } from "../context";
 import { fetchData } from "../helpers";
 
 function Companies() {
-  const { companies, setCompanies } = useContext(appContext);
+  const { companies, setCompanies, setShowOverlay } = useContext(appContext);
   const [selectedId, setSelectedId] = useState(null);
   // const getCompanies = async function () {
   //   const res = await fetch("http://localhost:3333/api/companies");

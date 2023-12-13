@@ -1,27 +1,26 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import WizzardOne from "./wizzard/WizzardOne";
 import WizzardTwo from "./wizzard/WizzardTwo";
 import WizzardThree from "./wizzard/WizzardThree";
 
 import "../styles/wizzard.css";
+import { appContext } from "../context";
+import Wizzardv2 from "./AdminCreateReportV2";
+import WizzardStefanV2 from "./WizzardStefanV2";
 
 function AdminCreateReports({ setShowReport }) {
+  const { setShowOverlay, createReport, setCreateReport } =
+    useContext(appContext);
   const [step, setStep] = useState(1);
-  const [createReport, setCreateReport] = useState({
-    candidateId: "",
-    companyName: "",
-    candidateName: "",
-    companyId: "",
-    id: "",
-    interviewDate: "",
-    note: "",
-    phase: "",
-    status: "",
-  });
+
   return (
     <div className="create-report">
+      <h2 className="submit-heading">Submit Candidate Report</h2>
       <button
-        onClick={() => setShowReport((prev) => !prev)}
+        onClick={() => {
+          setShowReport((prev) => !prev);
+          setShowOverlay(false);
+        }}
         className="close-modal"
       >
         X
@@ -33,20 +32,22 @@ function AdminCreateReports({ setShowReport }) {
       </div>
       <div className="steps">
         {step === 1 ? (
-          <WizzardOne
-            setStep={setStep}
-            setCreateReport={setCreateReport}
-            createReport={createReport}
-          />
+          // <WizzardOne
+          //   setStep={setStep}
+          //   setCreateReport={setCreateReport}
+          //   createReport={createReport}
+          // />
+          <Wizzardv2 setStep={setStep} />
         ) : (
           ""
         )}
         {step === 2 ? (
-          <WizzardTwo
-            setStep={setStep}
-            setCreateReport={setCreateReport}
-            createReport={createReport}
-          />
+          // <WizzardTwo
+          //   setStep={setStep}
+          //   setCreateReport={setCreateReport}
+          //   createReport={createReport}
+          // />
+          <WizzardStefanV2 setStep={setStep} />
         ) : (
           ""
         )}
