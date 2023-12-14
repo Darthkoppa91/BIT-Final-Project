@@ -4,16 +4,16 @@ import { appContext } from "../context";
 import { fetchData } from "../helpers";
 
 function Companies() {
-  const { companies, setCompanies, setShowOverlay } = useContext(appContext);
+  const { companies, setCompanies } = useContext(appContext);
   const [selectedId, setSelectedId] = useState(null);
   // const getCompanies = async function () {
   //   const res = await fetch("http://localhost:3333/api/companies");
   //   const data = await res.json();
   //   setCompanies(data);
   // };
-  useEffect(() => {
-    fetchData(setCompanies, "companies");
-  }, []);
+  // useEffect(() => {
+  //   fetchData(setCompanies, "companies");
+  // }, []);
 
   return (
     <div className="container companies">

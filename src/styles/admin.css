@@ -33,6 +33,8 @@ h1 {
 .btns {
   display: flex;
   gap: 2rem;
+  position: relative;
+  transform: translateX(50%);
 }
 /* 
 .admin-container div {
@@ -40,7 +42,7 @@ h1 {
 } */
 .admin-card {
   position: absolute;
-  top: 20%;
+  top: 27%;
   width: 20%;
-  left: 5%;
+  left: 9%;
 }

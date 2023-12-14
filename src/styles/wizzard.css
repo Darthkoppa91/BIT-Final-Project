@@ -25,11 +25,12 @@
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  font-weight: 700;
   color: rgb(22, 16, 124);
 }
 
 .step p {
-  border: 1px solid;
+  border: 2px solid;
   padding: 1rem 1.5rem;
   border-radius: 50%;
   aspect-ratio: 1/1;
@@ -58,3 +59,27 @@
 .MuiFormControl-root {
   font-weight: 800;
 } */
+
+.select {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+  align-items: center;
+}
+
+select {
+  padding: 0.9rem;
+  width: 70%;
+  outline: 1px solid grey;
+  border-radius: 7px;
+}
+
+.btns-select {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+}
+::placeholder {
+  color: grey;
+}

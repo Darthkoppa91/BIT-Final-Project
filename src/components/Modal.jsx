@@ -64,6 +64,7 @@ function Login() {
           id="outlined-4"
           autoComplete="current-username"
           variant="outlined"
+          type="password"
           value={body.password}
           onChange={(e) => setBody({ ...body, password: e.target.value })}
           placeholder="password"

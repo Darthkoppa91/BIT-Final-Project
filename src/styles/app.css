@@ -77,6 +77,15 @@ img,
 button,
 .card {
   cursor: pointer;
+  font-weight: 700;
+}
+.nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+.nav a img {
+  width: 30px;
 }
 .footer {
   background: linear-gradient(
@@ -159,6 +168,9 @@ span {
 .company {
   width: 25%;
   min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .aboutus-text {

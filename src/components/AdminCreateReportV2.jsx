@@ -6,18 +6,16 @@ import Button from "@mui/material/Button";
 function Wizzardv2({ setStep }) {
   const { candidates, createReport, setCreateReport } = useContext(appContext);
   return (
-    <div>
+    <div className="select">
       <select
         name=""
         id=""
         onChange={(e) =>
-          console.log(e.target.id) ||
           setCreateReport({
             ...createReport,
             candidateId: Number(e.target.value),
             candidateName: candidates.find(
-              (candidate) =>
-                console.log(candidate) || candidate.id === e.target.value
+              (candidate) => candidate.id === Number(e.target.value)
             )?.name,
           })
         }
@@ -28,16 +26,18 @@ function Wizzardv2({ setStep }) {
             <option
               selected={createReport.candidateId === cand.id ? true : false}
               value={cand.id}
+              key={cand.id}
             >
               {cand.name}
             </option>
           );
         })}
-        <option> test </option>
       </select>
-      <Button variant="contained" onClick={() => setStep(2)}>
-        Next
-      </Button>
+      <div className="btns-selected">
+        <Button variant="contained" onClick={() => setStep(2)}>
+          Next
+        </Button>
+      </div>
     </div>
   );
 }

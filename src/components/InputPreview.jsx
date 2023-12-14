@@ -33,7 +33,7 @@ function InputPreview() {
         error={error}
         className="textfield-outline"
         id="outlined-1"
-        label={error ? "Enter Correct Username/Email" : "username"}
+        label={error ? "Enter Correct Username/Email" : "Candidate Name"}
         autoComplete="current-username"
         variant="outlined"
         value={inputValue}
@@ -47,7 +47,7 @@ function InputPreview() {
       <TextField
         error={error}
         id="outlined-2"
-        label={error ? "Enter correct password/ID" : "password"}
+        label={error ? "Enter correct password/ID" : "Candidate ID"}
         type="password"
         autoComplete="current-password"
         variant="outlined"

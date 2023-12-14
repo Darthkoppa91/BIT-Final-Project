@@ -1,6 +1,10 @@
 import React, { useContext } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { appContext } from "../../context";
 
 function WizzardThree({
@@ -25,6 +29,16 @@ function WizzardThree({
     setShowReport(false);
     setShowOverlay(false);
     setReport((prev) => [...prev, data]);
+    setCreateReport({
+      candidateId: "",
+      candidateName: "",
+      companyId: "",
+      companyName: "",
+      interviewDate: "",
+      note: "",
+      phase: "",
+      status: "",
+    });
   };
   return (
     <div className="wizzard">
@@ -69,6 +83,16 @@ function WizzardThree({
           })
         }
         placeholder="Status"
+      />
+      <input
+        type="date"
+        value={createReport.interviewDate}
+        onChange={(e) =>
+          setCreateReport({
+            ...createReport,
+            interviewDate: e.target.value,
+          })
+        }
       />
 
       <div className="buttons">

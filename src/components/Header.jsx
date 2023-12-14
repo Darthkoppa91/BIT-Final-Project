@@ -16,14 +16,13 @@ function Header() {
   } = useContext(appContext);
   return (
     <div className="header">
-      <h1>
-        <Link to="/">
-          {/* <img src="./images/Logo pick canva.png" alt="logo pic" /> */}
-          <h1 className="main-heading">
-            V<span className="main-span">AP</span>
-          </h1>
-        </Link>
-      </h1>
+      <Link to="/">
+        {/* <img src="./images/Logo pick canva.png" alt="logo pic" /> */}
+        <h1 className="main-heading">
+          V<span className="main-span">AP</span>
+        </h1>
+      </Link>
+
       <ul>
         <li onClick={() => setSelectedCandidate(null)}>
           <Link to="/">Home</Link>

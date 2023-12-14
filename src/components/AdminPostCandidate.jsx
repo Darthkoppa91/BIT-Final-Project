@@ -10,7 +10,7 @@ function AdminPostCandidate({ setShowForm }) {
 
   const [postCandidate, setPostCandidate] = useState({
     name: "",
-
+    id: "",
     email: "",
     education: "",
     birthday: "",
@@ -53,6 +53,17 @@ function AdminPostCandidate({ setShowForm }) {
           setPostCandidate({ ...postCandidate, name: e.target.value })
         }
         placeholder="name"
+      />
+      <TextField
+        className="textfield-outline"
+        id="outlined-4"
+        autoComplete="current-username"
+        variant="outlined"
+        value={postCandidate.id}
+        onChange={(e) =>
+          setPostCandidate({ ...postCandidate, id: Number(e.target.value) })
+        }
+        placeholder="id"
       />
 
       <TextField

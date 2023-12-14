@@ -52,6 +52,10 @@ span {
   align-self: start;
   width: 70%;
 }
+.trash {
+  position: absolute;
+  left: 90%;
+}
 
 h2 {
   text-transform: uppercase;

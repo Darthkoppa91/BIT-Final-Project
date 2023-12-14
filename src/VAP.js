@@ -10,8 +10,8 @@ export const vap = [
     img: "./images/kopa.jpg",
   },
   {
-    name: "Vedran",
-    lastName: "Gavric",
+    name: "Pavle",
+    lastName: "Stojiljkovic",
     img: "./images/pavle.jpg",
   },
 ];

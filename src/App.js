@@ -30,7 +30,7 @@ function App() {
     candidateId: "",
     candidateName: "",
     companyId: "",
-
+    companyName: "",
     interviewDate: "",
     note: "",
     phase: "",

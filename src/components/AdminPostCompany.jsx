@@ -8,7 +8,6 @@ function AdminPostCompany({ setShowCompany }) {
   const { accessToken, setCompanies, setShowOverlay } = useContext(appContext);
   const [postCompany, setPostCompany] = useState({
     url: "",
-
     name: "",
     email: "",
     about: "",

@@ -3,6 +3,7 @@ import { appContext } from "../context";
 import { slike } from "../slike";
 import { useNavigate } from "react-router-dom";
 import "../styles/singleCandidate.css";
+import { deleteReport } from "../helpers";
 
 function SingleCandidate() {
   const navigate = useNavigate();
@@ -50,6 +51,7 @@ function SingleCandidate() {
 
   const imgTag = slike[Math.floor(Math.random() * 9)];
   const birthday = new Date(Date.parse(selectedCandidate?.birthday));
+
   return (
     <div className="single-candidate-card">
       <div>
@@ -95,24 +97,37 @@ function SingleCandidate() {
         ) : (
           <h2>No reports were found for this candidate!</h2>
         )}
-        <List />
+        <List options={options} />
       </div>
     </div>
   );
 }
 
-function List() {
-  const { report } = useContext(appContext);
+function List({ options }) {
+  const { report, accessToken, setReport, isLoggedIn } = useContext(appContext);
+
   return (
     <ul className="reports">
       {report.map((rep) => {
+        const iDate = new Date(Date.parse(rep?.interviewDate));
         return (
           <li className="li-item">
+            {isLoggedIn ? (
+              <img
+                src="./images/trash.png"
+                alt=""
+                className="trash"
+                onClick={() => deleteReport(rep.id, accessToken, setReport)}
+              />
+            ) : (
+              ""
+            )}
             <p>
               <span>Applied for:</span> {rep.companyName}
             </p>
             <p>
-              <span>Interview Date:</span> {rep.interviewDate}
+              <span>Interview Date:</span>{" "}
+              {iDate.toLocaleDateString("en-US", options)}
             </p>
             <p>
               {" "}
