@@ -5,15 +5,18 @@ import { appContext } from "../context";
 import "../styles/admin.css";
 import { getData } from "../helpers";
 function AdminPostCompany({ setShowCompany }) {
-  const { accessToken, setCompanies, setShowOverlay } = useContext(appContext);
+  const { accessToken, setCompanies, setShowOverlay, companies } =
+    useContext(appContext);
   const [postCompany, setPostCompany] = useState({
     url: "",
+    companyId: Math.trunc(Math.random() * 100000),
     name: "",
     email: "",
     about: "",
   });
   const handleClick = async function () {
     if (postCompany.name === "" || postCompany.email === "") return;
+    if (companies.find((company) => company.id === postCompany.id)) return;
 
     getData(
       accessToken,

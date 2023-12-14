@@ -37,7 +37,12 @@ export function Card({ name, email, candidate }) {
           navigate("/selectedCandidate");
         }}
       >
-        <img src={imgTag} alt="" />
+        <img
+          src={
+            process.env.PUBLIC_URL + `${candidate.image || candidate.avatar}`
+          }
+          alt=""
+        />
         <p>{name}</p>
         <p>{email}</p>
       </div>

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { appContext } from "../context";
 import { slike } from "../slike";
 import { useNavigate } from "react-router-dom";
@@ -63,7 +63,13 @@ function SingleCandidate() {
         >
           BACK
         </button>
-        <img src={imgTag} alt="BITOVAC" />
+        <img
+          src={
+            process.env.PUBLIC_URL +
+            `${selectedCandidate?.image || selectedCandidate?.avatar}`
+          }
+          alt="BITOVAC"
+        />
         <p>
           <span>Name:</span>
           {selectedCandidate?.name}
@@ -105,7 +111,7 @@ function SingleCandidate() {
 
 function List({ options }) {
   const { report, accessToken, setReport, isLoggedIn } = useContext(appContext);
-
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   return (
     <ul className="reports">
       {report.map((rep) => {
@@ -117,7 +123,7 @@ function List({ options }) {
                 src="./images/trash.png"
                 alt=""
                 className="trash"
-                onClick={() => deleteReport(rep.id, accessToken, setReport)}
+                onClick={() => setShowDeleteModal((prev) => !prev)}
               />
             ) : (
               ""
@@ -139,6 +145,26 @@ function List({ options }) {
             <p>
               <span>Note:</span> {rep.note}
             </p>
+            {showDeleteModal ? (
+              <div className="modal-delete">
+                <p>Are you sure you want to delete this report?</p>
+                <div className="btns-delete">
+                  <button
+                    onClick={() => {
+                      deleteReport(rep.id, accessToken, setReport);
+                      setShowDeleteModal((prev) => !prev);
+                    }}
+                  >
+                    Yes
+                  </button>
+                  <button onClick={() => setShowDeleteModal((prev) => !prev)}>
+                    No
+                  </button>
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
           </li>
         );
       })}

@@ -37,7 +37,7 @@ function App() {
     status: "",
   });
 
-  // console.log(candidates);
+  console.log(candidates);
 
   useEffect(() => {
     fetchData(setCandidates, "candidates");

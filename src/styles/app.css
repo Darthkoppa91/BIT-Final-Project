@@ -77,7 +77,6 @@ img,
 button,
 .card {
   cursor: pointer;
-  font-weight: 700;
 }
 .nav {
   display: flex;
@@ -214,4 +213,29 @@ h3 {
   backdrop-filter: blur(4px);
   z-index: 100;
   transition: all 0.5s;
+}
+
+.modal-delete {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  text-align: center;
+  gap: 2rem;
+  border-radius: 10px;
+  background-color: white;
+  max-width: 400px;
+  height: 20rem;
+  /* visibility: hidden; */
+}
+
+.btns-delete {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  min-width: 400px;
 }

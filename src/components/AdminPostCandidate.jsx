@@ -6,11 +6,12 @@ import "../styles/admin.css";
 import { getData } from "../helpers";
 
 function AdminPostCandidate({ setShowForm }) {
-  const { setCandidates, accessToken, setShowOverlay } = useContext(appContext);
+  const { setCandidates, accessToken, setShowOverlay, candidates } =
+    useContext(appContext);
 
   const [postCandidate, setPostCandidate] = useState({
     name: "",
-    id: "",
+    id: Math.trunc(Math.random() * 100000),
     email: "",
     education: "",
     birthday: "",
@@ -20,14 +21,14 @@ function AdminPostCandidate({ setShowForm }) {
 
   const handleClick = async function () {
     if (postCandidate.name === "" || postCandidate.email === "") return;
-
-    getData(
-      accessToken,
-      postCandidate,
-      "candidates",
-      setShowForm,
-      setCandidates
-    );
+    if (candidates.find((candidate) => candidate.id === postCandidate.id))
+      getData(
+        accessToken,
+        postCandidate,
+        "candidates",
+        setShowForm,
+        setCandidates
+      );
     setShowOverlay(false);
   };
   return (
@@ -54,7 +55,7 @@ function AdminPostCandidate({ setShowForm }) {
         }
         placeholder="name"
       />
-      <TextField
+      {/* <TextField
         className="textfield-outline"
         id="outlined-4"
         autoComplete="current-username"
@@ -64,7 +65,7 @@ function AdminPostCandidate({ setShowForm }) {
           setPostCandidate({ ...postCandidate, id: Number(e.target.value) })
         }
         placeholder="id"
-      />
+      /> */}
 
       <TextField
         className="textfield-outline"
@@ -88,6 +89,7 @@ function AdminPostCandidate({ setShowForm }) {
         }
         placeholder="education"
       />
+      {/* <input type="date" /> */}
       <TextField
         className="textfield-outline"
         id="outlined-9"
@@ -95,10 +97,23 @@ function AdminPostCandidate({ setShowForm }) {
         variant="outlined"
         value={postCandidate.birthday}
         onChange={(e) =>
-          setPostCandidate({ ...postCandidate, birthday: e.target.value })
+          setPostCandidate({
+            ...postCandidate,
+            birthday: e.target.value,
+          })
         }
         placeholder="birthday"
       />
+      {/* <input
+        type="date"
+        value={postCandidate.birthday}
+        onChange={(e) =>
+          setPostCandidate({
+            ...postCandidate,
+            birthday: e.target.value,
+          })
+        }
+      /> */}
       <Button variant="contained" onClick={handleClick}>
         Post
       </Button>
