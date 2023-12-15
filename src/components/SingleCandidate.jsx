@@ -110,65 +110,71 @@ function SingleCandidate() {
 }
 
 function List({ options }) {
-  const { report, accessToken, setReport, isLoggedIn } = useContext(appContext);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const { report } = useContext(appContext);
+
   return (
     <ul className="reports">
       {report.map((rep) => {
-        const iDate = new Date(Date.parse(rep?.interviewDate));
-        return (
-          <li className="li-item">
-            {isLoggedIn ? (
-              <img
-                src="./images/trash.png"
-                alt=""
-                className="trash"
-                onClick={() => setShowDeleteModal((prev) => !prev)}
-              />
-            ) : (
-              ""
-            )}
-            <p>
-              <span>Applied for:</span> {rep.companyName}
-            </p>
-            <p>
-              <span>Interview Date:</span>{" "}
-              {iDate.toLocaleDateString("en-US", options)}
-            </p>
-            <p>
-              {" "}
-              <span>Phase:</span> {rep.phase}
-            </p>
-            <p>
-              <span>Status:</span> {rep.status}
-            </p>
-            <p>
-              <span>Note:</span> {rep.note}
-            </p>
-            {showDeleteModal ? (
-              <div className="modal-delete">
-                <p>Are you sure you want to delete this report?</p>
-                <div className="btns-delete">
-                  <button
-                    onClick={() => {
-                      deleteReport(rep.id, accessToken, setReport);
-                      setShowDeleteModal((prev) => !prev);
-                    }}
-                  >
-                    Yes
-                  </button>
-                  <button onClick={() => setShowDeleteModal((prev) => !prev)}>
-                    No
-                  </button>
-                </div>
-              </div>
-            ) : (
-              ""
-            )}
-          </li>
-        );
+        return <LiItem options={options} rep={rep} />;
       })}
     </ul>
+  );
+}
+
+function LiItem({ rep, options }) {
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const { isLoggedIn, accessToken, setReport } = useContext(appContext);
+  const iDate = new Date(Date.parse(rep?.interviewDate));
+  return (
+    <li className="li-item">
+      {isLoggedIn ? (
+        <img
+          src="./images/trash.png"
+          alt="delete"
+          className="trash"
+          onClick={() => setShowDeleteModal((prev) => !prev)}
+        />
+      ) : (
+        ""
+      )}
+      <p>
+        <span>Applied for:</span> {rep.companyName}
+      </p>
+      <p>
+        <span>Interview Date:</span>{" "}
+        {iDate.toLocaleDateString("en-US", options)}
+      </p>
+      <p>
+        {" "}
+        <span>Phase:</span> {rep.phase}
+      </p>
+      <p>
+        <span>Status:</span> {rep.status}
+      </p>
+      <p>
+        <span>Note:</span> {rep.note}
+      </p>
+      {showDeleteModal ? (
+        <div className="modal-delete">
+          <p>Are you sure you want to delete this report? </p>
+          <div className="btns-delete">
+            <button
+              onClick={() => {
+                deleteReport(rep.id, accessToken, setReport);
+                setShowDeleteModal((prev) => !prev);
+              }}
+            >
+              Yes
+            </button>
+            <button onClick={() => setShowDeleteModal((prev) => !prev)}>
+              No
+            </button>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
+    </li>
   );
 }
 export default SingleCandidate;
